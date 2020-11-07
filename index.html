@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>animate circle</title>
+</head>
+<body onkeypress="animate_circle()">
+
+
+<style type="text/css">
+body {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+#cycler{position:relative; width:100%; height:100%;}
+#cycler img{position:absolute;z-index:1}
+#cycler img.active{z-index:3}
+
+#cycler div {
+  position:absolute;
+  width:100%;
+  height: 100%;
+  z-index:1;
+  background: url(https://i.ibb.co/kKbYDBz/Rectangle-2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+}
+
+#cycler div:nth-of-type(2) {
+  background-image: url('https://i.ibb.co/YksnXkw/smile.png');
+}
+
+
+
+#cycler div.active {
+  z-index:2;
+}
+
+.logo {
+  height: 1vh;
+  display: block;
+  min-height: 80px;
+    z-index: 5;
+    position: absolute;
+    top: 2vh;
+    left: 1vw;
+}
+
+.logo img {
+  height: 100%;
+}
+
+.gradient {
+  position: absolute;
+  z-index:4;
+  top: 0;
+  left: 0;
+  background: url('https://i.ibb.co/Hg5xkwn/gradient.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.circle {
+  position: absolute;
+  z-index:6;
+  border-radius: 50%;
+  transition: background 0.3s ease-out;
+  background-size: cover;
+  background-position: center;
+  
+}
+
+.circle .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://i.ibb.co/bz9hB1Y/radial-circle.png') no-repeat center;
+  background-size: cover;
+  border-radius: 50%;
+  opacity: 1;
+  transition: opacity 0.8s ease-out;
+}
+
+.circle:nth-child(1) {
+  background-image: url('https://i.ibb.co/yQhNc2S/middle-circles.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 5%;
+  left: 25%;
+  width: 50vw;
+  height: 90vh;
+  opacity: 1;
+  /*-webkit-animation: float1 20s infinite linear;
+          animation: float1 20s infinite linear;*/
+  animation: rotation 50s infinite linear;
+}
+
+.text {
+  top: 27%;
+  left: 25%;
+  width: 50vw;
+  height: 46vh;
+  position: absolute;
+  text-align: center;
+  z-index: 7;
+}
+
+.text img {
+  height: 100%;
+  width: auto;
+}
+
+.circle:nth-child(1):hover {
+  
+}
+
+.circle:hover span {
+  opacity: 0;
+}
+
+.circle:nth-child(3) {
+  background: url('https://i.ibb.co/8cjFyTF/Rectangle-3.png') no-repeat center;
+  background-size: cover;
+  border: 1px solid white;
+  top: 45%;
+  left: -5%;
+  width: 43vh;
+  height: 43vh;
+}
+.circle:nth-child(4) {
+  background: url('https://i.ibb.co/3CmVm1x/Rectangle-4.png') no-repeat center;
+  background-size: cover;
+  border: 1px solid white;
+  top: 55%;
+  left: 75%;
+  width: 38vh;
+  height: 38vh;
+}
+.circle:nth-child(5) {
+  background: url('https://i.ibb.co/KVXrtPc/Rectangle-20.png') no-repeat center;
+  background-size: cover;
+  border: 1px solid white;
+  top: 25%;
+  left: 75%;
+  width: 26vh;
+  height: 26vh;
+}
+.circle:nth-child(6) {
+  background: url('https://i.ibb.co/KwH81Lm/Rectangle-19.png') no-repeat center;
+  background-size: cover;
+  border: 1px solid white;
+  top: 83%;
+  left: 20%;
+  width: 26vh;
+  height: 26vh;
+}
+
+@keyframes float1 {
+  40% {
+    -webkit-transform: translateX(1vh) translateY(3vh);
+            transform: translateX(1vh) translateY(3vh);
+  }
+  80% {
+    -webkit-transform: translateX(5vh) translateY(2vh);
+            transform: translateX(5vh) translateY(2vh);
+  }
+}
+
+@keyframes float2 {
+  40% {
+    -webkit-transform: translateX(3vw) translateY(-7vh);
+            transform: translateX(3vw) translateY(-7vh);
+  }
+  80% {
+    -webkit-transform: translateX(6vw) translateY(9vh);
+            transform: translateX(6vw) translateY(9vh);
+  }
+}
+
+@keyframes float3 {
+  40% {
+    -webkit-transform: translateX(1.5vh) translateY(-8vh);
+            transform: translateX(1.5vh) translateY(-8vh);
+  }
+  80% {
+    -webkit-transform: translateX(1.3vh) translateY(6vh);
+            transform: translateX(1.3vh) translateY(6vh);
+  }
+}
+
+@keyframes float4 {
+  40% {
+    -webkit-transform: translateX(0.8vh) translateY(-9vh);
+            transform: translateX(0.8vh) translateY(-9vh);
+  }
+  80% {
+    -webkit-transform: translateX(1vh) translateY(0.5vh);
+            transform: translateX(1vh) translateY(0.5vh);
+  }
+}
+
+@keyframes float5 {
+  40% {
+    -webkit-transform: translateX(2.2vh) translateY(-8vh);
+            transform: translateX(2.2vh) translateY(-8vh);
+  }
+  80% {
+    -webkit-transform: translateX(0.25vh) translateY(0.125vh);
+            transform: translateX(0.25vh) translateY(0.125vh);
+  }
+}
+
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-359deg);
+  }
+}
+
+</style>
+
+
+
+<div id="cycler">
+  <div class="active"></div>
+  <div class=""></div>
+  <div class=""></div>
+</div>
+
+
+<a class="logo" href="https://imgbb.com/"><img src="https://i.ibb.co/ZNPPCWY/logo.png" alt="logo" border="0"></a>
+  <div class="gradient"></div>
+  <div class="circles">
+    <div class="circle" size='50'></div>
+    <div class="text"><img src="https://i.ibb.co/CtxQ2Yb/text.png" alt="text" border="0"></div>
+    <div class="circle" size='43'><span class="overlay"></span></div>
+    <div class="circle" size='38'><span class="overlay"></span></div>
+    <div class="circle" size='26'><span class="overlay"></span></div>
+    <div class="circle" size='26'><span class="overlay"></span></div>
+  </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+function cycleImages(){
+      var $active = $('#cycler .active');
+      var $next = ($active.next().length > 0) ? $active.next() : $('#cycler div:first');
+      $next.css('z-index',2);//move the next image up the pile
+      $active.fadeOut(1500,function(){//fade out the top image
+    $active.css('z-index',1).show().removeClass('active');//reset the z-index and unhide the image
+          $next.css('z-index',3).addClass('active');//make the next image the top one
+      });
+    }
+
+$(document).ready(function(){
+  // run every 7s
+  setInterval('cycleImages()', 5000);
+
+})
+
+var circles = document.getElementsByClassName('circle');
+
+console.log(circles)
+
+
+for (var i = 1; i < circles.length; i++) {
+  circles[i].setAttribute('left', '20');
+  circles[i].setAttribute('top', '20');
+  circles[i].setAttribute('deg', '30');
+  circles[i].setAttribute('speed', '0.2');
+}
+
+
+function draw_circle() {
+  for (var i = 1; i < circles.length; i++) {
+    var style = "left:"+circles[i].getAttribute('left')+"%; top:"+circles[i].getAttribute('top')+"%;";
+    circles[i].setAttribute('style', style);
+  }
+}
+
+draw_circle();
+
+function animate_circle() {
+  for (var i = 1; i < circles.length; i++) {
+    var left = Number(circles[i].getAttribute('left'));
+    var top = Number(circles[i].getAttribute('top'));
+    var size = Number(circles[i].getAttribute('size'));
+    var deg = Number(circles[i].getAttribute('deg'));
+    var speed = Number(circles[i].getAttribute('speed'));
+
+    
+    
+    left = left + Math.cos(deg*Math.PI/180)*speed;
+    top = top + Math.sin(deg*Math.PI/180)*speed;
+
+    circles[i].setAttribute('left', left);
+    circles[i].setAttribute('top', top);
+  }
+
+  draw_circle();
+}
+
+
+
+
+</script>
+
+
+</body>
+</html>
