@@ -336,8 +336,12 @@ function animate_circle() {
       if (distance < minDist) {
         deg1 = Math.atan2(dy, dx)/Math.PI*180;
         if (deg1 < 0) deg1 = 360 + deg1;
-        console.log('collide', i , j, dx, dy, deg1);
         deg_changed = (deg1*2-deg+180)%360;
+        left = left - Math.cos(deg1*Math.PI/180)*speed;
+        top = top - Math.sin(deg1*Math.PI/180)*speed;
+        circles[i].setAttribute('left', left);
+        circles[i].setAttribute('top', top);
+        console.log('collide', i , j, dx, dy, deg1, deg_changed);
         circles[i].setAttribute('deg', deg_changed);
         deg1 = (deg1+180)%360;
         deg_changed = (deg1*2-Number(circles[j].getAttribute('deg'))+180)%360;
