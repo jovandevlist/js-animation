@@ -123,8 +123,24 @@ body {
   
 }
 
-.circle:hover span, .circle.active span {
+.circle:hover span {
   opacity: 0;
+}
+
+.circle.active span {
+  animation-duration: 2s;
+  animation-name: pulse;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .circle:nth-child(3) {
@@ -229,6 +245,7 @@ body {
   }
 }
 
+
 </style>
 
 
@@ -279,23 +296,23 @@ console.log(circles, w, h)
 
 for (var i = 1; i < circles.length; i++) {
   circles[i].setAttribute('deg', Math.random()*360);
-  circles[i].setAttribute('speed', 1+Math.random()*1);
+  circles[i].setAttribute('speed', 0.5+Math.random());
   // size 200 ~ 320 px
   size = h/4 + Math.random()*120;
   circles[i].setAttribute('size', size);
   // position
   var rand_x, rand_y;
   if (i == 1) {
-    rand_x = (w/2-size)*Math.random();
+    rand_x = (w/2-size-h*0.45)*Math.random();
     rand_y = (h/2-size)*Math.random();
   } else if (i == 2) {
-    rand_x = (w/2-size)*Math.random()+w/2;
+    rand_x = (w/2-size-h*0.45)*Math.random()+w/2+h*0.45;
     rand_y = (h/2-size)*Math.random();
   } else if (i == 3) {
-    rand_x = (w/2-size)*Math.random();
+    rand_x = (w/2-size-h*0.45)*Math.random();
     rand_y = (h/2-size)*Math.random()+h/2;
   } else if (i == 4) {
-    rand_x = (w/2-size)*Math.random()+w/2;
+    rand_x = (w/2-size-h*0.45)*Math.random()+w/2+h*0.45;
     rand_y = (h/2-size)*Math.random()+h/2;
   }
   circles[i].setAttribute('left', rand_x);
@@ -356,14 +373,16 @@ function animate_circle() {
     distance = Math.sqrt(dx*dx+dy*dy);
     minDist = size/2+h*0.45;
     if (distance < minDist) {
-      // deg1 = Math.atan2(dy, dx)/Math.PI*180;
-      // if (deg1 < 0) deg1 = 360 + deg1;
-      // // console.log('center', i, deg1)
-      // deg = (deg1*2-deg+180)%360;
-      // circles[i].setAttribute('deg', deg);
-      circles[i].setAttribute('class', 'circle active');
-    } else {
+      deg1 = Math.atan2(dy, dx)/Math.PI*180;
+      if (deg1 < 0) deg1 = 360 + deg1;
+      // console.log('center', i, deg1)
+      deg = (deg1*2-deg+180)%360;
+      circles[i].setAttribute('deg', deg);
       circles[i].setAttribute('class', 'circle');
+      circles[i].setAttribute('class', 'circle active');
+      var elm = circles[i];
+      var newone = elm.cloneNode(true);
+      elm.parentNode.replaceChild(newone, elm);
     }
 
     //collid with wall
