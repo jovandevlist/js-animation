@@ -118,7 +118,7 @@ body {
 .text img {
   /*height: 100%;*/
   /*width: auto;*/
-  width: 90%;
+  width: 100%;
 }
 
 .circle:nth-child(1):hover {
@@ -304,6 +304,8 @@ for (var i = 1; i < circles.length; i++) {
   circles[i].setAttribute('speed', 0.5+Math.random());
   // size 200 ~ 320 px
   size = h/4 + Math.random()*h/8;
+  if (w*0.5 < h*0.9)
+    size = w/7 + Math.random()*w/12;
   circles[i].setAttribute('size', size);
   // position
   var rand_x, rand_y;
