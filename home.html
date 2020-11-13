@@ -291,6 +291,9 @@ $(document).ready(function(){
 var circles = document.getElementsByClassName('circle');
 var w = window.innerWidth;
 var h = window.innerHeight;
+var c_w = w*0.5;
+if (c_w > h*0.9) c_w = h*0.9;
+c_w = c_w*0.5;
 
 console.log(circles, w, h)
 
@@ -298,21 +301,21 @@ for (var i = 1; i < circles.length; i++) {
   circles[i].setAttribute('deg', Math.random()*360);
   circles[i].setAttribute('speed', 0.5+Math.random());
   // size 200 ~ 320 px
-  size = h/4 + Math.random()*120;
+  size = h/4 + Math.random()*h/8;
   circles[i].setAttribute('size', size);
   // position
   var rand_x, rand_y;
   if (i == 1) {
-    rand_x = (w/2-size-h*0.45)*Math.random();
+    rand_x = (w/2-size-c_w)*Math.random();
     rand_y = (h/2-size)*Math.random()+80;
   } else if (i == 2) {
-    rand_x = (w/2-size-h*0.45)*Math.random()+w/2+h*0.45;
+    rand_x = (w/2-size-c_w)*Math.random()+w/2+c_w;
     rand_y = (h/2-size)*Math.random()+80;
   } else if (i == 3) {
-    rand_x = (w/2-size-h*0.45)*Math.random();
+    rand_x = (w/2-size-c_w)*Math.random();
     rand_y = (h/2-size)*Math.random()+h/2;
   } else if (i == 4) {
-    rand_x = (w/2-size-h*0.45)*Math.random()+w/2+h*0.45;
+    rand_x = (w/2-size-c_w)*Math.random()+w/2+c_w;
     rand_y = (h/2-size)*Math.random()+h/2;
   }
   circles[i].setAttribute('left', rand_x);
@@ -371,7 +374,7 @@ function animate_circle() {
     dx = w/2 - x;
     dy = h/2 - y;
     distance = Math.sqrt(dx*dx+dy*dy);
-    minDist = size/2+h*0.45;
+    minDist = size/2+c_w;
     if (distance < minDist) {
       deg1 = Math.atan2(dy, dx)/Math.PI*180;
       if (deg1 < 0) deg1 = 360 + deg1;
