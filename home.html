@@ -101,7 +101,7 @@ body {
   opacity: 1;
   /*-webkit-animation: float1 20s infinite linear;
           animation: float1 20s infinite linear;*/
-  animation: rotation 50s infinite linear;
+  /*animation: rotation 50s infinite linear;*/
 }
 
 .text {
@@ -148,7 +148,7 @@ body {
 .circle:nth-child(3) {
   background: url('https://i.ibb.co/8cjFyTF/Rectangle-3.png') no-repeat center;
   background-size: cover;
-  border: 1px solid white;
+  border: 1px solid #fff496;
   top: 45%;
   left: -5%;
   width: 43vh;
@@ -157,7 +157,7 @@ body {
 .circle:nth-child(4) {
   background: url('https://i.ibb.co/3CmVm1x/Rectangle-4.png') no-repeat center;
   background-size: cover;
-  border: 1px solid white;
+  border: 1px solid #fff496;
   top: 55%;
   left: 75%;
   width: 38vh;
@@ -166,7 +166,7 @@ body {
 .circle:nth-child(5) {
   background: url('https://i.ibb.co/KVXrtPc/Rectangle-20.png') no-repeat center;
   background-size: cover;
-  border: 1px solid white;
+  border: 1px solid #fff496;
   top: 25%;
   left: 75%;
   width: 26vh;
@@ -175,7 +175,7 @@ body {
 .circle:nth-child(6) {
   background: url('https://i.ibb.co/KwH81Lm/Rectangle-19.png') no-repeat center;
   background-size: cover;
-  border: 1px solid white;
+  border: 1px solid #fff496;
   top: 83%;
   left: 20%;
   width: 26vh;
@@ -299,33 +299,6 @@ c_w = c_w*0.5;
 
 console.log(circles, w, h)
 
-for (var i = 1; i < circles.length; i++) {
-  circles[i].setAttribute('deg', Math.random()*360);
-  circles[i].setAttribute('speed', 0.5+Math.random());
-  // size 200 ~ 320 px
-  size = h/4 + Math.random()*h/8;
-  if (w*0.5 < h*0.9)
-    size = w/7 + Math.random()*w/12;
-  circles[i].setAttribute('size', size);
-  // position
-  var rand_x, rand_y;
-  if (i == 1) {
-    rand_x = (w/2-size-c_w)*Math.random();
-    rand_y = (h/2-size)*Math.random()+80;
-  } else if (i == 2) {
-    rand_x = (w/2-size-c_w)*Math.random()+w/2+c_w;
-    rand_y = (h/2-size)*Math.random()+80;
-  } else if (i == 3) {
-    rand_x = (w/2-size-c_w)*Math.random();
-    rand_y = (h/2-size)*Math.random()+h/2;
-  } else if (i == 4) {
-    rand_x = (w/2-size-c_w)*Math.random()+w/2+c_w;
-    rand_y = (h/2-size)*Math.random()+h/2;
-  }
-  circles[i].setAttribute('left', rand_x);
-  circles[i].setAttribute('top', rand_y);
-}
-
 
 function draw_circle() {
   for (var i = 1; i < circles.length; i++) {
@@ -334,7 +307,37 @@ function draw_circle() {
   }
 }
 
-draw_circle();
+
+function initialize_circles() {
+
+  for (var i = 1; i < circles.length; i++) {
+    circles[i].setAttribute('deg', Math.random()*360);
+    circles[i].setAttribute('speed', 0.5+Math.random());
+    // size 200 ~ 320 px
+    size = h/4 + Math.random()*h/8;
+    if (w*0.5 < h*0.9)
+      size = w/7 + Math.random()*w/12;
+    circles[i].setAttribute('size', size);
+    // position
+    var rand_x, rand_y;
+    if (i == 1) {
+      rand_x = (w/2-size-c_w)*Math.random();
+      rand_y = (h/2-size)*Math.random()+80;
+    } else if (i == 2) {
+      rand_x = (w/2-size-c_w)*Math.random()+w/2+c_w;
+      rand_y = (h/2-size)*Math.random()+80;
+    } else if (i == 3) {
+      rand_x = (w/2-size-c_w)*Math.random();
+      rand_y = (h/2-size)*Math.random()+h/2;
+    } else if (i == 4) {
+      rand_x = (w/2-size-c_w)*Math.random()+w/2+c_w;
+      rand_y = (h/2-size)*Math.random()+h/2;
+    }
+    circles[i].setAttribute('left', rand_x);
+    circles[i].setAttribute('top', rand_y);
+  }
+  draw_circle();
+}
 
 function animate_circle() {
   for (var i = 1; i < circles.length; i++) {
@@ -427,7 +430,128 @@ function animate_circle() {
   draw_circle();
 }
 
-setInterval(animate_circle, 20);
+function initialize_circles_static() {
+
+  for (var i = 1; i < circles.length; i++) {
+    // circles[i].setAttribute('deg', Math.random()*360);
+    circles[i].setAttribute('speed', 0.5+Math.random());
+    // size 200 ~ 320 px
+    size = h/4 + Math.random()*h/8;
+    if (w*0.5 < h*0.9)
+      size = w/7 + Math.random()*w/12;
+    circles[i].setAttribute('size', size);
+    // position
+    var rand_x, rand_y;
+    if (i == 1) {
+      rand_x = 20;
+      rand_y = 110;
+      circles[i].setAttribute('deg', 20);
+    } else if (i == 2) {
+      rand_x = w-size-10;
+      rand_y = 80;
+      circles[i].setAttribute('deg', 168);
+    } else if (i == 3) {
+      rand_x = 50;
+      rand_y = h-size-20;
+      circles[i].setAttribute('deg', 349);
+    } else if (i == 4) {
+      rand_x = w-size-20;
+      rand_y = h-size-10;
+      circles[i].setAttribute('deg', 198);
+    }
+    circles[i].setAttribute('left', rand_x);
+    circles[i].setAttribute('top', rand_y);
+  }
+  draw_circle();
+}
+
+function animate_circle_static() {
+  for (var i = 1; i < circles.length; i++) {
+    var left = Number(circles[i].getAttribute('left'));
+    var top = Number(circles[i].getAttribute('top'));
+    var size = Number(circles[i].getAttribute('size'));
+    var deg = Number(circles[i].getAttribute('deg'));
+    var speed = Number(circles[i].getAttribute('speed'));
+    
+    left1 = left + Math.cos(deg*Math.PI/180)*speed;
+    top1 = top + Math.sin(deg*Math.PI/180)*speed;
+
+    var x = left1 + size/2;
+    var y = top1 + size/2;
+    var deg1;
+
+    // collide with each other
+    for ( var j = i+1; j < circles.length; j++) {
+      var dx = Number(circles[j].getAttribute('left'))+Number(circles[j].getAttribute('size'))/2 - x;
+      var dy = Number(circles[j].getAttribute('top'))+Number(circles[j].getAttribute('size'))/2 - y;
+      var distance = Math.sqrt(dx*dx+dy*dy);
+      var minDist = size/2 + Number(circles[j].getAttribute('size'))/2;
+      if (distance < minDist) {
+        deg1 = Math.atan2(dy, dx)/Math.PI*180;
+        if (deg1 < 0) deg1 = 360 + deg1;
+        deg_changed = (deg1*2-deg+180)%360;
+        left = left - Math.cos(deg1*Math.PI/180)*speed;
+        top = top - Math.sin(deg1*Math.PI/180)*speed;
+        circles[i].setAttribute('left', left);
+        circles[i].setAttribute('top', top);
+        console.log('collide', i , j, dx, dy, deg1, deg_changed);
+        circles[i].setAttribute('deg', deg_changed);
+        deg1 = (deg1+180)%360;
+        deg_changed = (deg1*2-Number(circles[j].getAttribute('deg'))+180)%360;
+        circles[j].setAttribute('deg', deg_changed);
+      }
+    }
+
+    // if it collide with center circle.
+    dx = w/2 - x;
+    dy = h/2 - y;
+    distance = Math.sqrt(dx*dx+dy*dy);
+    minDist = size/2+c_w;
+    if (distance < minDist) {
+      deg1 = Math.atan2(dy, dx)/Math.PI*180;
+      if (deg1 < 0) deg1 = 360 + deg1;
+      // console.log('center', i, deg1)
+      deg = (deg1*2-deg+180)%360;
+      circles[i].setAttribute('deg', deg);
+      circles[i].setAttribute('class', 'circle');
+      circles[i].setAttribute('class', 'circle active');
+      var elm = circles[i];
+      var newone = elm.cloneNode(true);
+      elm.parentNode.replaceChild(newone, elm);
+    }
+
+    //collid with wall
+    if (x < size/2) {
+      deg = (deg+180)%360;
+      circles[i].setAttribute('deg', deg);
+    } else if (x > (w-size/2)) {
+      deg = (deg+180)%360;
+      circles[i].setAttribute('deg', deg);
+    }
+    if (y < size/2) {
+      deg = (deg+180)%360;
+      circles[i].setAttribute('deg', deg);
+    } else if (y > (h-size/2)) {
+      deg = (deg+180)%360;
+      circles[i].setAttribute('deg', deg);
+    }
+    if (y < (size/2+80) && x < w/2) {
+      deg = (deg+180)%360;
+      circles[i].setAttribute('deg', deg);
+    }
+
+    left = left + Math.cos(deg*Math.PI/180)*speed;
+    top = top + Math.sin(deg*Math.PI/180)*speed;
+
+    circles[i].setAttribute('left', left);
+    circles[i].setAttribute('top', top);
+  }
+
+  draw_circle();
+}
+
+initialize_circles_static();
+setInterval(animate_circle_static, 20);
 
 </script>
 
