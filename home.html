@@ -443,11 +443,11 @@ function initialize_circles_static() {
     // position
     var rand_x, rand_y;
     if (i == 1) {
-      rand_x = 20;
+      rand_x = w / 2 - c_w - size - 20;
       rand_y = 110;
       circles[i].setAttribute('deg', 20);
     } else if (i == 2) {
-      rand_x = w-size-10;
+      rand_x = w / 2 + c_w + 10;
       rand_y = 80;
       circles[i].setAttribute('deg', 168);
     } else if (i == 3) {
